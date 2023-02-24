@@ -125,7 +125,7 @@
       "setup": "javac -d target src/hello_world/*",
       "run": "java -cp target hello_world.AdvancedGeometry",
       "input": "3\n0\n5\n0\n3\n0\n2",
-      "output": "*",
+      "output": " *\n *\n *\n***\n *",
       "comparison": "included"
     },
     {
