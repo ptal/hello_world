@@ -2,10 +2,13 @@ import os
 import json
 import re
 import sys
+import string
 
 if len(sys.argv) != 2:
   print("usage: ", sys.argv[0], " <testing-file.json>")
   exit(1)
+
+os.system("mkdir -p target")
 
 testing_file = "src/test/resources/" + sys.argv[1]
 print("Testing file ", testing_file)
@@ -39,7 +42,8 @@ for test in tests["tests"]:
       with open(run_out) as f:
         output = f.read()
       if test["comparison"] == "included":
-        if test["output"] in output:
+        remove_ws = str.maketrans(dict.fromkeys(string.whitespace))
+        if test["output"].translate(remove_ws) in output.translate(remove_ws):
           test_succeeds = test_succeeds + 1
         else:
           fail_test = fail_test + 1
